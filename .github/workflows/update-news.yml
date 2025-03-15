@@ -1,0 +1,62 @@
+name: Daily News Update
+
+# Trigger conditions
+on:
+  schedule:
+    # Runs every day at 00:00 UTC (adjust as needed)
+    - cron: '0 0 * * *'
+  # Allows manual triggering
+  workflow_dispatch:
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Bun environment
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      # 3. Setup pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      # 4. Install project dependencies
+      - name: Install Dependencies
+        run: pnpm install
+
+      # 5. Execute the crawler script
+      - name: Run Updater
+        run: |
+          cd scripts
+          bun update-fetch.ts
+          bun translation.ts
+        env:
+          # Add any environment variables needed for the crawler
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+
+      # 6. Check if there are any file changes
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --quiet || echo "changed=true" >> $GITHUB_OUTPUT
+
+      # 7. Commit and push changes if there are any
+      - name: Commit and Push changes
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m 'Daily news update - ${{ github.run_id }}'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -18,7 +18,7 @@ Westerns Also Need a Sun
 Start:
 
 ```
-pnpm
+pnpm install
 pnpm dev
 ```
 
