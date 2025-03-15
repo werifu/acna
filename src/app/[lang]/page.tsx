@@ -21,9 +21,6 @@ export async function generateMetadata({
   return {
     title: `${SITE_TITLE[lang as keyof typeof SITE_TITLE] || SITE_TITLE.en}`,
     description: SITE_TITLE[lang as keyof typeof SITE_TITLE] || SITE_TITLE.en,
-    icons: {
-      icon: '/acna-icon.png',
-    },
   };
 }
 
