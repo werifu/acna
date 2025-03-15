@@ -1,76 +1,174 @@
 import Link from 'next/link';
 import { getArticles } from '../lib/getArticles';
+import { CATEGORIES, CATEGORIES_URL_MAP } from '../lib/category';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { TrumpFormater } from '../lib/format';
+import { CATEGORY_I18N } from '../lib/commonI18n';
 
-export default async function HomePage({ params }: { params: { lang: string } }) {
+
+export default async function HomePage({
+  params,
+}: {
+  params: { lang: string };
+}) {
   const resolvedParams = await params;
   const { lang } = resolvedParams;
-  const categories = [
-    'articles',
-    'briefings-statements',
-    'fact-sheets',
-    'presidential-actions',
-    'remarks'
-  ];
   // Load articles for all categories
   const articlesData = await Promise.all(
-    categories.map(category => getArticles(lang, category))
+    CATEGORIES.map((category) => getArticles(lang, category))
   );
-  const latestArticles = articlesData.map(articles => articles[0]); // Take the first (latest) article
 
+  const formatTitle = TrumpFormater('font-bold text-xl');
+  const headline = (lang: string) => {
+    if (lang === 'kp') {
+      return formatTitle('트럼프 대통령이 중요한 연설을 하고 있습니다.');
+    } else if (lang === 'cn') {
+      return formatTitle('特朗普总统正在发表重要讲话');
+    } else if (lang === 'jp') {
+      return formatTitle('トランプ大統領が重要な演説を行っています。');
+    } else {
+      return formatTitle('President Trump is delivering an important speech.');
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-blue-800 text-white p-4 flex justify-between items-center">
-        <img src="/acna-logo.png" alt="Logo" className="h-10" />
-        <nav className="space-x-4">
-          <Link href="/kp" className="hover:underline">KP</Link>
-          <Link href="/en" className="hover:underline">EN</Link>
-          <Link href="/cn" className="hover:underline">CN</Link>
-        </nav>
-      </header>
+      <Header lang={lang} />
 
       {/* Main Content */}
-      <main className="p-4">
+      <main className="p-4 bg-white">
         {/* Articles Block (Largest) */}
-        <section className="mb-8 bg-white p-6 rounded-lg shadow-md">
-          <div className="flex flex-col md:flex-row items-start">
-            <img
-              src="/trump-talk.webp"
-              alt="Articles Image"
-              className="w-full md:w-1/2 h-64 object-cover mb-4 md:mb-0 md:mr-4"
-            />
-            <div>
-              <h2 className="text-2xl font-bold mb-2">{latestArticles[0]?.title}</h2>
-              <p className="text-gray-600 mb-2">{latestArticles[0]?.date}</p>
-              <p className="text-gray-800">
-                {latestArticles[0]?.content.substring(0, 100)}...
-              </p>
-              <Link href={`/${lang}/articles/${latestArticles[0]?.slug}`} className="text-blue-500 hover:underline">
-                阅读更多
-              </Link>
+        <section className="mb-8">
+          <Link href={`/${lang}/articles`} className="block">
+            <h2 className=" text-l font-bold mb-4 p-2 rounded-lg shadow-md bg-[#f9eded] border border-[#f9e5e4] text-center text-[#cb3528] md:w-[70%] md:mx-auto">
+              {CATEGORY_I18N['Articles' as keyof typeof CATEGORY_I18N][lang as keyof typeof CATEGORY_I18N['Articles']]}
+            </h2>
+          </Link>
+          <div className="p-6 rounded-lg border-1 border-[#f4cac9] bg-[#f9eded]">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="flex flex-col md:w-1/2 pr-5 items-center justify-center md:pr-5">
+                <img
+                  src="/trump-talk.webp"
+                  alt="Articles Image"
+                  className="w-full object-cover mb-2"
+                />
+                <span className="text-gray-600 text-sm mb-4 text-center" dangerouslySetInnerHTML={{ __html: headline(lang) }}>
+                </span>
+              </div>
+              <div className="w-full md:w-1/2">
+                {articlesData[0].slice(0, 7).map((article, index) => {
+                  return (
+                    <div key={article.slug} className="mb-3">
+                      <Link href={`/${lang}/articles/${article.slug}`} className="">
+                        <span className="hover:text-orange-500" dangerouslySetInnerHTML={{ __html: formatTitle(article.title) }}>
+                        </span>
+                        <span className="text-gray-600 text-sm inline-block ml-2">[{article.date.replaceAll(/-/g, '.') + '.'}]</span>
+                      </Link>
+                      <div className="border-b border-dotted border-gray-300 my-2"></div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Other Category Blocks */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {categories.slice(1).map((category, index) => (
-            <div key={category} className="bg-white p-4 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold capitalize mb-2">{category}</h3>
-              <p className="text-gray-800">{latestArticles[index + 1]?.title}</p>
-              <p className="text-gray-600 mb-2">{latestArticles[index + 1]?.date}</p>
-              <Link href={`/${lang}/${category}`} className="text-blue-500 hover:underline">
-                更多
-              </Link>
-            </div>
-          ))}
+        <div className="flex flex-col lg:flex-row-reverse gap-4">
+
+          {/* Right column (1/3) */}
+          <div className="w-full lg:w-1/3">
+            {CATEGORIES.slice(3).map((category, index) => {
+              const categoryUri =
+                CATEGORIES_URL_MAP[category as keyof typeof CATEGORIES_URL_MAP];
+              const categoryArticles = articlesData[index + 3] || [];
+
+              return (
+                <div key={category} className="mb-6">
+                  <Link href={`/${lang}/${categoryUri}`} className="block">
+                    <h2 className="text-l font-bold mb-4 p-2 rounded-lg shadow-md bg-[#f9eded] border border-[#f9e5e4] text-center text-[#cb3528] md:w-[70%] md:mx-auto">
+                      {CATEGORY_I18N[category as keyof typeof CATEGORY_I18N][lang as keyof typeof CATEGORY_I18N['Articles']]}
+                    </h2>
+                  </Link>
+                  <div className="p-6 rounded-lg border-1 border-[#e4e3e3] bg-white">
+                    {categoryArticles.slice(0, 3).map((article, idx) => (
+                      <div key={article.slug} className="mb-3">
+                        <Link
+                          href={`/${lang}/${categoryUri}/${article.slug}`}
+                          className=""
+                        >
+                          <span className="font-medium hover:text-orange-500" dangerouslySetInnerHTML={{ __html: formatTitle(article.title) }}></span>
+                          <div className="text-gray-600 text-sm inline-block ml-2">
+                            [{article.date.replaceAll(/-/g, '.') + '.'}]
+                          </div>
+                        </Link>
+                        <div className="border-b border-dotted border-gray-300 my-2"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Left column (2/3) */}
+          <div className="w-full lg:w-2/3">
+            {CATEGORIES.slice(1, 3).map((category, index) => {
+              const categoryUri =
+                CATEGORIES_URL_MAP[category as keyof typeof CATEGORIES_URL_MAP];
+              const categoryArticles = articlesData[index + 1] || [];
+
+              return (
+                <div key={category} className="mb-6">
+                  <Link href={`/${lang}/${categoryUri}`} className="block">
+                    <h2 className="text-l font-bold mb-4 p-2 rounded-lg shadow-md bg-[#eff1f3] border border-[#ebe9e9] text-center text-[#184077] md:w-[70%] md:mx-auto">
+                      {CATEGORY_I18N[category as keyof typeof CATEGORY_I18N][lang as keyof typeof CATEGORY_I18N['Articles']]}
+                    </h2>
+                  </Link>
+                  <div className="p-6 rounded-lg border-1 border-[#e4e3e3] bg-white">
+                    {categoryArticles.slice(0, 5).map((article, idx) => (
+                      <div key={article.slug} className="mb-3">
+                        <Link
+                          href={`/${lang}/${categoryUri}/${article.slug}`}
+                          className=""
+                        >
+                          <span className="font-medium hover:text-orange-500" dangerouslySetInnerHTML={{ __html: formatTitle(article.title) }}></span>
+                          <p className="text-gray-600 text-sm">
+                            [{article.date.replaceAll(/-/g, '.') + '.'}]
+                          </p>
+                        </Link>
+                        <div className="border-b border-dotted border-gray-300 my-2"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+        <div className="w-full border-b border-gray-300 my-8"></div>
+        <div className="mt-8 px-4">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8">
+            <a href="http://www.kcna.kp" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 rounded">
+              <img src="/kcna.png" alt="KCNA" className="h-12 object-contain rounded" />
+            </a>
+            <a href="https://whitehouse.gov" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 bg-black rounded">
+              <img src="/whitehouse-47-logo.webp" alt="White House" className="h-12 object-contain rounded" />
+            </a>
+            <a href="https://github.com/werifu/acna" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 rounded">
+              <img src="/github-logo.jpg" alt="GitHub" className="h-12 object-contain rounded" />
+            </a>
+            <a href="https://anime.bang-dream.com/avemujica/character/sakiko/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 rounded">
+              <img src="/togawa.png" alt="Togawa" className="h-12 object-contain rounded" />
+            </a>
+          </div>
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-200 p-4 text-center text-gray-600">
-        <p>Copyright © 2025</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
