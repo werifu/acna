@@ -104,13 +104,17 @@ describe('parseNewsList', () => {
     // Check if we got some results
     expect(newsList.length).toBeGreaterThan(0);
     // Check the structure of a news item
-    expect(newsList.map(item => ({
-      ...item,
-      title: item.title.replace(/\s+/g, ' ').trim()
-    }))).toEqual(newsListParsingResult.map(item => ({
-      ...item,
-      title: item.title.replace(/\s+/g, ' ').trim()
-    })));
+    expect(
+      newsList.map((item) => ({
+        ...item,
+        title: item.title.replace(/\s+/g, ' ').trim(),
+      }))
+    ).toEqual(
+      newsListParsingResult.map((item) => ({
+        ...item,
+        title: item.title.replace(/\s+/g, ' ').trim(),
+      }))
+    );
 
     // Log the first item for manual verification
     // console.log('news items:', newsList);
@@ -129,7 +133,9 @@ describe('parseNewsContent', () => {
     const newsContent = parseNewsContent(htmlContent);
 
     // Verify specific fields
-    expect(newsContent.title.replace(/\s+/g, ' ')).toBe(newsContentParsingResult.title.replace(/\s+/g, ' '));
+    expect(newsContent.title.replace(/\s+/g, ' ')).toBe(
+      newsContentParsingResult.title.replace(/\s+/g, ' ')
+    );
     expect(newsContent.category).toBe(newsContentParsingResult.category);
     expect(newsContent.date).toBe(newsContentParsingResult.date);
     expect(newsContent.slug).toBe(newsContentParsingResult.slug);

@@ -18,7 +18,12 @@ export async function getArticles(
   try {
     const jsonData = await fs.readFile(filePath, 'utf-8');
     const articles = (JSON.parse(jsonData) as Article[]).filter((article) => {
-      return article.category === CATEGORY_I18N[category as keyof typeof CATEGORY_I18N][lang as keyof typeof CATEGORY_I18N['Articles']];
+      return (
+        article.category ===
+        CATEGORY_I18N[category as keyof typeof CATEGORY_I18N][
+          lang as keyof (typeof CATEGORY_I18N)['Articles']
+        ]
+      );
     });
     return articles;
   } catch (error) {

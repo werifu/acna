@@ -7,7 +7,7 @@ import { TrumpFormater } from '@/app/lib/format';
 export default async function ArticlePage({
   params,
 }: {
-  params: { lang: string; categoryUri: string; slug: string };
+  params: Promise<{ lang: string; categoryUri: string; slug: string }>;
 }) {
   const resolvedParams = await params; // Resolve the params Promise
   const { lang, categoryUri, slug } = resolvedParams; // Destructure after resolution

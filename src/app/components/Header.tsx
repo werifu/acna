@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { CATEGORIES, CATEGORIES_URL_MAP } from '@/app/lib/category';
 import { useState } from 'react';
 import { CATEGORY_I18N } from '../lib/commonI18n';
+import Image from 'next/image';
 
 export type LangMap = { kp: string; en: string; cn: string; jp: string };
 
@@ -89,7 +90,7 @@ export default function Header({
         {/* Logo - Centered on mobile */}
         <div className="absolute left-1/2 -translate-x-1/2 lg:left-[10%] lg:translate-x-0 top-4">
           <Link href={`/${lang}`}>
-            <img src="/acna-logo.png" alt="Logo" className="h-15" />
+            <Image src="/acna-logo.png" alt="Logo" className="h-15" />
           </Link>
         </div>
 
@@ -150,7 +151,11 @@ export default function Header({
                   <Link
                     href={`/${lang}/${CATEGORIES_URL_MAP[category as keyof typeof CATEGORIES_URL_MAP]}`}
                   >
-                    {CATEGORY_I18N[category as keyof typeof CATEGORY_I18N][lang as keyof typeof CATEGORY_I18N['Articles']]}
+                    {
+                      CATEGORY_I18N[category as keyof typeof CATEGORY_I18N][
+                        lang as keyof (typeof CATEGORY_I18N)['Articles']
+                      ]
+                    }
                   </Link>
                   {index < CATEGORIES.length - 1 && (
                     <span className="mx-1">|</span>

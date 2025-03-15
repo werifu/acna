@@ -16,7 +16,12 @@ async function updateFetchList(): Promise<NewsAbstract[]> {
   console.log('Starting to fetch updates from whitehouse.gov...');
 
   // Load existing news list
-  const newsListPath = path.join(process.cwd(), '..', 'contents', 'news-list.json');
+  const newsListPath = path.join(
+    process.cwd(),
+    '..',
+    'contents',
+    'news-list.json'
+  );
   let existingNews: NewsAbstract[] = [];
 
   try {
@@ -33,7 +38,7 @@ async function updateFetchList(): Promise<NewsAbstract[]> {
   }
 
   // Create a set of existing slugs for quick lookup
-  const existingSlugs = new Set(existingNews.map(item => item.slug));
+  const existingSlugs = new Set(existingNews.map((item) => item.slug));
 
   const newNews: NewsAbstract[] = [];
   let page = 1;
@@ -57,7 +62,9 @@ async function updateFetchList(): Promise<NewsAbstract[]> {
         let foundExisting = false;
         for (const item of newsItems) {
           if (existingSlugs.has(item.slug)) {
-            console.log(`Found existing news item: "${item.slug}". Synchronization complete.`);
+            console.log(
+              `Found existing news item: "${item.slug}". Synchronization complete.`
+            );
             foundExisting = true;
             break;
           } else {
@@ -79,7 +86,9 @@ async function updateFetchList(): Promise<NewsAbstract[]> {
     }
   }
 
-  console.log(`Update fetching complete. Found ${newNews.length} new news items.`);
+  console.log(
+    `Update fetching complete. Found ${newNews.length} new news items.`
+  );
 
   if (newNews.length > 0) {
     // Ensure the contents directory exists
@@ -90,8 +99,14 @@ async function updateFetchList(): Promise<NewsAbstract[]> {
 
     // Combine new news with existing news and save
     const updatedNews = [...newNews, ...existingNews];
-    fs.writeFileSync(newsListPath, JSON.stringify(updatedNews, null, 2), 'utf8');
-    console.log(`Updated news list saved with ${updatedNews.length} total items.`);
+    fs.writeFileSync(
+      newsListPath,
+      JSON.stringify(updatedNews, null, 2),
+      'utf8'
+    );
+    console.log(
+      `Updated news list saved with ${updatedNews.length} total items.`
+    );
   } else {
     console.log('No new items to add to the news list.');
   }
@@ -105,7 +120,9 @@ async function updateFetchContents(newsList: NewsAbstract[]): Promise<void> {
     return;
   }
 
-  console.log(`Preparing to fetch content for ${newsList.length} new news items...`);
+  console.log(
+    `Preparing to fetch content for ${newsList.length} new news items...`
+  );
 
   const contentsFilePath = path.join(
     process.cwd(),
@@ -126,7 +143,9 @@ async function updateFetchContents(newsList: NewsAbstract[]): Promise<void> {
     if (fs.existsSync(contentsFilePath)) {
       const fileData = fs.readFileSync(contentsFilePath, 'utf8');
       existingContents = JSON.parse(fileData);
-      console.log(`Loaded ${existingContents.length} items from contents.json.`);
+      console.log(
+        `Loaded ${existingContents.length} items from contents.json.`
+      );
     } else {
       console.log(`contents.json not found. Initializing with an empty array.`);
     }
@@ -169,7 +188,9 @@ async function updateFetchContents(newsList: NewsAbstract[]): Promise<void> {
         JSON.stringify(combinedItems, null, 2),
         'utf8'
       );
-      console.log(`Progress saved (${newContentItems.length}/${newsList.length} new items processed).`);
+      console.log(
+        `Progress saved (${newContentItems.length}/${newsList.length} new items processed).`
+      );
 
       // Wait between requests to avoid rate limiting
       await sleep(2000);
@@ -188,15 +209,21 @@ async function updateFetchContents(newsList: NewsAbstract[]): Promise<void> {
           JSON.stringify(combinedItems, null, 2),
           'utf8'
         );
-        console.log(`Progress saved after error (${newContentItems.length}/${newsList.length} new items processed).`);
+        console.log(
+          `Progress saved after error (${newContentItems.length}/${newsList.length} new items processed).`
+        );
       } catch (saveErr) {
         console.error('Failed to save progress after error:', saveErr);
       }
     }
   }
 
-  console.log(`\nUpdate complete! Added ${newContentItems.length} new content items.`);
-  console.log(`Total items in contents.json: ${newContentItems.length + existingContents.length}`);
+  console.log(
+    `\nUpdate complete! Added ${newContentItems.length} new content items.`
+  );
+  console.log(
+    `Total items in contents.json: ${newContentItems.length + existingContents.length}`
+  );
 }
 
 // Execute the update process
