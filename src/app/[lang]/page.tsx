@@ -4,8 +4,28 @@ import { CATEGORIES, CATEGORIES_URL_MAP } from '../lib/category';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { TrumpFormater } from '../lib/format';
-import { CATEGORY_I18N } from '../lib/commonI18n';
+import { CATEGORY_I18N, SITE_TITLE } from '../lib/commonI18n';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+
+// Replace static metadata with a dynamic function
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  // Default to 'en' if no language is specified
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang || 'en';
+  return {
+    title: `${SITE_TITLE[lang as keyof typeof SITE_TITLE] || SITE_TITLE.en}`,
+    description: SITE_TITLE[lang as keyof typeof SITE_TITLE] || SITE_TITLE.en,
+    icons: {
+      icon: '/acna-icon.png',
+    },
+  };
+}
 
 export default async function HomePage({
   params,

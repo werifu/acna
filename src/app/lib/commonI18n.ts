@@ -36,3 +36,10 @@ export const CATEGORY_I18N = {
     kp: '담화',
   },
 };
+
+export const SITE_TITLE = {
+  en: 'ACNA',
+  cn: '美国中央通讯',
+  jp: 'アメリカ中央通信',
+  kp: '미국중앙통신'
+};

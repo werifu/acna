@@ -9,7 +9,26 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import { TrumpFormater } from '@/app/lib/format';
 import Pagination from '@/app/components/Pagination';
-import { CATEGORY_I18N } from '@/app/lib/commonI18n';
+import { CATEGORY_I18N, SITE_TITLE } from '@/app/lib/commonI18n';
+import { Metadata } from 'next';
+
+// Replace static metadata with a dynamic function
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  // Default to 'en' if no language is specified
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang || 'en';
+  return {
+    title: `${SITE_TITLE[lang as keyof typeof SITE_TITLE] || SITE_TITLE.en}`,
+    description: SITE_TITLE[lang as keyof typeof SITE_TITLE] || SITE_TITLE.en,
+    icons: {
+      icon: '/acna-icon.png',
+    },
+  };
+}
 
 export default async function CategoryPage({
   params,

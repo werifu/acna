@@ -90,7 +90,7 @@ export default function Header({
         {/* Logo - Centered on mobile */}
         <div className="absolute left-1/2 -translate-x-1/2 lg:left-[10%] lg:translate-x-0 top-4">
           <Link href={`/${lang}`}>
-            <Image src="/acna-logo.png" alt="Logo" className="h-15" />
+            <Image src="/acna-logo.png" alt="Logo" width={180} height={120} className="h-14 object-contain"/>
           </Link>
         </div>
 
