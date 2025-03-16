@@ -7,7 +7,7 @@ Other names:
 - アメリカ中央通信社
 
 <h2 align="center">
-Westerns Also Need a Sun
+Westerners Also Need a Sun
 </h2>
 <h2 align="center">
 解决西半球没有太阳的问题
