@@ -8,8 +8,7 @@ export default function Footer() {
           <span>American Central News Agency</span>
           <span className="mx-2">|</span>
           <span>
-            Copyright © 2025-20?? not by www.us-acna.info but
-            www.whitehouse.gov
+            This is a parody website, please don't take it seriously; the data comes from the White House.
           </span>
         </p>
       </div>
