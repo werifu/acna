@@ -8,7 +8,7 @@ export default function Footer() {
           <span>American Central News Agency</span>
           <span className="mx-2">|</span>
           <span>
-            This is a parody website, please don't take it seriously; the data comes from the White House.
+            This is a parody website, please don&apos;t take it seriously; the data comes from the White House.
           </span>
         </p>
       </div>
