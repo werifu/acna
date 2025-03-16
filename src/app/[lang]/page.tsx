@@ -92,7 +92,7 @@ export default async function HomePage({
                         className=""
                       >
                         <span
-                          className="hover:text-orange-500"
+                          className="hover:text-orange-500 text-black"
                           dangerouslySetInnerHTML={{
                             __html: formatTitle(article.title),
                           }}
