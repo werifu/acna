@@ -31,7 +31,7 @@ bun translation.ts
 Translated by DeepSeek v3.
 
 
-Initial data (not needed now):
+Initialize data (not needed now):
 ```
 cd scripts
 bun init-fetch.ts
