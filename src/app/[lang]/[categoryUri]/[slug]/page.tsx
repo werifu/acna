@@ -46,7 +46,7 @@ export default async function ArticlePage({
     <>
       <Header lang={lang} categoryUri={categoryUri} slug={slug}></Header>
       <div className="min-h-screen bg-white mt-10">
-        <article className="bg-white rounded-lg max-w-3xl mx-auto px-5 sm:px-0">
+        <article className="bg-white rounded-lg max-w-3xl mx-auto px-5 sm:px-5">
           <h1
             className="text-3xl font-bold mb-4 text-center text-[#255291]"
             dangerouslySetInnerHTML={{ __html: formatTitle(article.title) }}
@@ -59,7 +59,7 @@ export default async function ArticlePage({
               paragraph.startsWith('-') ? (
                 <p
                   key={i}
-                  className="ml-4 mb-[1em] px-5 sm:px-0"
+                  className="ml-4 mb-[1em]"
                   dangerouslySetInnerHTML={{
                     __html: formatParagraph(paragraph),
                   }}
@@ -67,7 +67,7 @@ export default async function ArticlePage({
               ) : (
                 <p
                   key={i}
-                  className="mb-[1em] px-5 sm:px-0"
+                  className="mb-[1em]"
                   dangerouslySetInnerHTML={{
                     __html: formatParagraph(paragraph),
                   }}
