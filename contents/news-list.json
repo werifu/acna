@@ -1,5 +1,131 @@
 [
   {
+    "title": "President Trump Unleashes Permitting Technology for the 21st Century",
+    "category": "Articles",
+    "url": "https://www.whitehouse.gov/articles/2025/04/permitting-technology/",
+    "date": "2025-04-15",
+    "slug": "permitting-technology"
+  },
+  {
+    "title": "Ensuring National Security and Economic Resilience Through Section 232 Actions on Processed Critical Minerals and Derivative Products",
+    "category": "Presidential ActionsExecutive Orders",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/ensuring-national-security-and-economic-resilience-through-section-232-actions-on-processed-critical-minerals-and-derivative-products-a08a/",
+    "date": "2025-04-15",
+    "slug": "ensuring-national-security-and-economic-resilience-through-section-232-actions-on-processed-critical-minerals-and-derivative-products-a08a"
+  },
+  {
+    "title": "Restoring Common Sense to Federal Office Space Management",
+    "category": "Presidential ActionsExecutive Orders",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/restoring-common-sense-to-federal-office-space-management/",
+    "date": "2025-04-15",
+    "slug": "restoring-common-sense-to-federal-office-space-management"
+  },
+  {
+    "title": "Ensuring National Security and Economic Resilience Through Section 232 Actions on Processed Critical Minerals and Derivative Products",
+    "category": "Presidential ActionsExecutive Orders",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/ensuring-national-security-and-economic-resilience-through-section-232-actions-on-processed-critical-minerals-and-derivative-products/",
+    "date": "2025-04-15",
+    "slug": "ensuring-national-security-and-economic-resilience-through-section-232-actions-on-processed-critical-minerals-and-derivative-products"
+  },
+  {
+    "title": "Lowering Drug Prices by Once Again Putting Americans First",
+    "category": "Presidential ActionsExecutive Orders",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/lowering-drug-prices-by-once-again-putting-americans-first/",
+    "date": "2025-04-15",
+    "slug": "lowering-drug-prices-by-once-again-putting-americans-first"
+  },
+  {
+    "title": "Restoring Common Sense to Federal Procurement",
+    "category": "Presidential ActionsExecutive Orders",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/restoring-common-sense-to-federal-procurement/",
+    "date": "2025-04-15",
+    "slug": "restoring-common-sense-to-federal-procurement"
+  },
+  {
+    "title": "Preventing Illegal Aliens from Obtaining Social Security Act Benefits",
+    "category": "Presidential ActionsPresidential Memoranda",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/preventing-illegal-aliens-from-obtaining-social-security-act-benefits/",
+    "date": "2025-04-15",
+    "slug": "preventing-illegal-aliens-from-obtaining-social-security-act-benefits"
+  },
+  {
+    "title": "Updating Permitting Technology for the 21st Century",
+    "category": "Presidential ActionsPresidential Memoranda",
+    "url": "https://www.whitehouse.gov/presidential-actions/2025/04/updating-permitting-technology-for-the-21st-century/",
+    "date": "2025-04-15",
+    "slug": "updating-permitting-technology-for-the-21st-century"
+  },
+  {
+    "title": "Fact Sheet: President Donald J. Trump Announces Actions to Lower Prescription Drug Prices",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-announces-actions-to-lower-prescription-drug-prices/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-donald-j-trump-announces-actions-to-lower-prescription-drug-prices"
+  },
+  {
+    "title": "Fact Sheet: President Donald J. Trump Ensures National Security and Economic Resilience Through Section 232 Actions on Processed Critical Minerals and Derivative Products",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-ensures-national-security-and-economic-resilience-through-section-232-actions-on-processed-critical-minerals-and-derivative-products/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-donald-j-trump-ensures-national-security-and-economic-resilience-through-section-232-actions-on-processed-critical-minerals-and-derivative-products"
+  },
+  {
+    "title": "Fact Sheet: President Trump Brings Permitting Technology Into the 21st Century for Government Efficiency",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-trump-brings-permitting-technology-into-the-21st-century-for-government-efficiency/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-trump-brings-permitting-technology-into-the-21st-century-for-government-efficiency"
+  },
+  {
+    "title": "Fact Sheet: President Donald J. Trump Enforces Requirement of Cost-Effective Commercial Solutions in Federal Contracts",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-enforces-requirement-of-cost-effective-commercial-solutions-in-federal-contracts/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-donald-j-trump-enforces-requirement-of-cost-effective-commercial-solutions-in-federal-contracts"
+  },
+  {
+    "title": "Fact Sheet: President Donald J. Trump Restores Common Sense to Federal Procurement",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-restores-common-sense-to-federal-procurement/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-donald-j-trump-restores-common-sense-to-federal-procurement"
+  },
+  {
+    "title": "Fact Sheet: President Donald J. Trump Prevents Illegal Aliens from Obtaining Social Security Act Benefits",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-prevents-illegal-aliens-from-obtaining-social-security-act-benefits/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-donald-j-trump-prevents-illegal-aliens-from-obtaining-social-security-act-benefits"
+  },
+  {
+    "title": "Fact Sheet: President Donald J. Trump Cuts Costs, Brings Government to the People",
+    "category": "Fact Sheets",
+    "url": "https://www.whitehouse.gov/fact-sheets/2025/04/fact-sheet-president-donald-j-trump-cuts-costs-brings-government-to-the-people/",
+    "date": "2025-04-15",
+    "slug": "fact-sheet-president-donald-j-trump-cuts-costs-brings-government-to-the-people"
+  },
+  {
+    "title": "“Sanctuary” Policies Put Accused Killer Back on the Streets",
+    "category": "Articles",
+    "url": "https://www.whitehouse.gov/articles/2025/04/sanctuary-policies-put-accused-killer-back-on-the-streets/",
+    "date": "2025-04-15",
+    "slug": "sanctuary-policies-put-accused-killer-back-on-the-streets"
+  },
+  {
+    "title": "These Sick Criminals Are Who Democrats and the Legacy Media Are Defending",
+    "category": "Articles",
+    "url": "https://www.whitehouse.gov/articles/2025/04/these-sick-criminals-are-who-democrats-and-the-legacy-media-are-defending/",
+    "date": "2025-04-15",
+    "slug": "these-sick-criminals-are-who-democrats-and-the-legacy-media-are-defending"
+  },
+  {
+    "title": "Remarks by Director Kratsios at the Endless Frontiers Retreat",
+    "category": "Articles",
+    "url": "https://www.whitehouse.gov/articles/2025/04/8716/",
+    "date": "2025-04-14",
+    "slug": "8716"
+  },
+  {
     "title": "The NPR, PBS Grift Has Ripped Us Off for Too Long",
     "category": "Articles",
     "url": "https://www.whitehouse.gov/articles/2025/04/the-npr-pbs-grift-has-ripped-us-off-for-too-long/",
